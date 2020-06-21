@@ -32,15 +32,6 @@ body {
 }
 
 
-#question-box {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20%;
-    height:50%;
-    width:40%;
-    
-}
-
 .answer {
     display: block;
     font-size: large;

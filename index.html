@@ -10,20 +10,19 @@
 
 <body>
     <!-- elements with the 'in-game' class will only be displayed during the game. -->
-    <time class="begin" id="timer"></time>
-    <aside class="begin" id="view-highscores">View Highscores</aside>
-
-    <time class="in-game" id="timer"></time>
-    <aside class="in-game" id="view-highscores">View Highscores</aside>
-
     <main class="begin main">
+        <time id="timer"></time>
+        <aside id="view-highscores">View Highscores</aside>
         <h1>Code Quiz Challenge</h1>
         <h3>Answer the questions within the time limit. Incorrect answers will results in a ten-second deduction from
             your time, and a deduction from your score.
         </h3>
         <button id="start-quiz">Start Quiz</button>
     </main>
+
     <main class="in-game main" id="question-box">
+        <time id="timer"></time>
+        <aside id="view-highscores">View Highscores</aside>
         <header id="question"></header>
         <button class="answer" id="answer1">Question 1</button>
         <button class="answer" id="answer2">Question 2</button>
