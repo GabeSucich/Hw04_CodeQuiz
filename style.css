@@ -51,6 +51,7 @@ body {
 #highscore-list {
     background-color: white;
     opacity: 70%;
+    margin-bottom: 40px;
 }
 
 .highscore-btn {
@@ -58,4 +59,9 @@ body {
     border-radius: 10px;
     background-color: lightgreen;
     opacity: 70%;
+}
+
+.stored-score {
+    margin: 0;
+    padding: 1;
 }

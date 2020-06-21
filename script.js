@@ -1,3 +1,5 @@
+
+
 var screen_disply = ".begin"
 
 function screen_switcher(target) {
@@ -18,4 +20,16 @@ function screen_switcher(target) {
 
 };
 
-screen_switcher('.enter-initials')
+screen_switcher('.highscores')
+
+// HIGHSCORES PAGE
+
+var clear_scores = document.getElementById("clear-highscores")
+var scores_list = document.getElementById("highscore-list")
+
+clear_scores.addEventListener("click", function() {
+    scores_list.innerHTML = ''
+})
+
+
+
