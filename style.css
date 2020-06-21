@@ -23,6 +23,15 @@ body {
     padding-left: 1%;
 }
 
+.main {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20%;
+    height:50%;
+    width:40%;
+}
+
+
 #question-box {
     margin-left: auto;
     margin-right: auto;
@@ -37,4 +46,25 @@ body {
     font-size: large;
     margin-top: 3px;
     border-radius: 10px;
+    background-color: lightgreen;
+    opacity: 70%;
+}
+
+#start-quiz {
+    margin-top: 3px;
+    border-radius: 10px;
+    background-color: lightgreen;
+    opacity: 70%;
+}
+
+#highscore-list {
+    background-color: white;
+    opacity: 70%;
+}
+
+.highscore-btn {
+    margin-top: 3px;
+    border-radius: 10px;
+    background-color: lightgreen;
+    opacity: 70%;
 }

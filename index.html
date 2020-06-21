@@ -1,21 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type = "text/css" href="./style.css"/>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
     <title>Code Quiz</title>
 </head>
+
 <body>
-    <time id="timer"></time>
-    <aside id='view-highscores'>View Highscores</aside>
-    <main id="question-box">
+    <!-- elements with the 'in-game' class will only be displayed during the game. -->
+    <time class="begin" id="timer"></time>
+    <aside class="begin" id="view-highscores">View Highscores</aside>
+
+    <time class="in-game" id="timer"></time>
+    <aside class="in-game" id="view-highscores">View Highscores</aside>
+
+    <main class="begin main">
+        <h1>Code Quiz Challenge</h1>
+        <h3>Answer the questions within the time limit. Incorrect answers will results in a ten-second deduction from
+            your time, and a deduction from your score.
+        </h3>
+        <button id="start-quiz">Start Quiz</button>
+    </main>
+    <main class="in-game main" id="question-box">
         <header id="question"></header>
         <button class="answer" id="answer1">Question 1</button>
         <button class="answer" id="answer2">Question 2</button>
         <button class="answer" id="answer3">Question 3</button>
         <button class="answer" id="answer4">Question 4</button>
     </main>
+
+    <main class="enter-initials main">
+        <h2>All done!</h2>
+        <h4>Your final score is <span id="score"></span></h4>
+        <form id="initials-input">
+            <label>Enter your initials here:</label>
+            <input type="text"/>
+            <input type="submit" id="submit-initials"/>
+        </form>
+
+    </main>
+
+    <main class="highscores main">
+        <header>
+            <h1>Highscores</h1>
+        </header>
+
+        <div id="highscore-list">
+            <p>Placeholder</p>
+        </div>
+
+        <button class="highscore-btn" id="go-back">Take quiz again</button>
+        <button class="highscore-btn" id="clear-highscores">Clear highscores</button>
+
+    </main>
+
+
     <script src="script.js"></script>
 </body>
+
 </html>
