@@ -6,20 +6,20 @@ body {
 
 #timer {
     position:fixed;
-    top: 0;
+    top: 10px;
     right: 0;
     height: 3%;
     width: 7%;
-    background-color: red;
+    background-color: transparent;
 }
 
 #view-highscores {
     position:fixed;
-    top: 0;
+    top: 10px;
     left: 0;
     height: 3%;
     width:11%;
-    background-color: red;
+    background-color: transparent;
     padding-left: 1%;
 }
 
@@ -64,4 +64,8 @@ body {
 .stored-score {
     margin: 0;
     padding: 1;
+}
+
+#question {
+    margin-bottom: 20px;
 }
