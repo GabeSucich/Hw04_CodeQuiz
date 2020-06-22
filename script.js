@@ -8,6 +8,9 @@ var initial_input = document.getElementById("initial-input")
 var submit_initials = document.getElementById("submit-initials")
 var score_display = document.getElementById("score")
 var start = document.getElementById("start-quiz")
+var view_highscores = document.querySelectorAll("#view-highscores")
+
+screen_switcher(".begin")
 
 function screen_switcher(target) {
     // Takes in a class name in the form of ".class". All elements on the page with 
@@ -17,22 +20,37 @@ function screen_switcher(target) {
     
     for (const element of mains) {
         if (element === displayed) {
-            element.removeAttribute('display');
+            element.style.removeProperty('display');
         }
 
         else {
-            element.style.display = 'none';
+            element.style.setProperty('display', 'none');
         };
     };
 
 };
 
+function play_game() {
+    screen_switcher(".in-game")
+
+}
+
+
 // BEGINNING SCREEN
 
 start.addEventListener("click", function() {
-    screen_switcher(".in-game");
+    play_game();
 }
 )
+
+// VIEW HIGHSCORES BUTTON
+
+for (const element of view_highscores) {
+    element.addEventListener("click", function() {
+        screen_switcher(".highscores");
+    })
+};
+
 
 // SCORE AND HIGHSCORES
 
@@ -57,6 +75,8 @@ submit_initials.addEventListener("click", function(event) {
     screen_switcher(".highscores") //Jumps to the high scores page
 }
 )
+
+
 
 
 
