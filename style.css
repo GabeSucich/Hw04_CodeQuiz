@@ -37,8 +37,11 @@ body {
     font-size: large;
     margin-top: 3px;
     border-radius: 10px;
+    color: black;
     background-color: lightgreen;
     opacity: 70%;
+    width:100%;
+    text-align: left;
 }
 
 #start-quiz {
