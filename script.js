@@ -26,6 +26,7 @@ var answer3 = document.querySelector('.three')
 var answer4 = document.querySelector('.four')
 var feedback = document.getElementById('feedback')
 var interval;
+var allow_clicks = true;
 
 screen_switcher(".begin")
 initial_time.textContent = '75';
@@ -50,6 +51,9 @@ function screen_switcher(target) {
 };
 
 function next_question() {
+
+    allow_clicks = true;
+
     if (question_array.length === 0) {
         finish_game();
     }
@@ -94,36 +98,62 @@ function incorrect() {
 }
 
 answer1.addEventListener("click", function() {
-    if (answer1.id === 'correct') {
-        correct();
-    }
-    else {
-        incorrect();
-    }
+    if (allow_clicks) {
+
+        allow_clicks = false;
+
+        if (answer1.id === 'correct') {
+            correct();
+        }
+        else {
+            incorrect();
+        };
+
+    };   
+
+
 })
 answer2.addEventListener("click", function() {
-    if (answer2.id === "correct") {
-        correct();
-    }
-    else {
-        incorrect();
-    }
+    if (allow_clicks) {
+
+        allow_clicks = false;
+
+        if (answer2.id === 'correct') {
+            correct();
+        }
+        else {
+            incorrect();
+        };
+
+    };   
 })
 answer3.addEventListener("click", function() {
-    if (answer3.id === "correct") {
-        correct();
-    }
-    else {
-        incorrect();
-    }
+    if (allow_clicks) {
+
+        allow_clicks = false;
+
+        if (answer3.id === 'correct') {
+            correct();
+        }
+        else {
+            incorrect();
+        };
+
+    };   
 })
 answer4.addEventListener("click", function() {
-    if (answer4.id === "correct") {
-        correct();
-    }
-    else {
-        incorrect();
-    }
+    if (allow_clicks) {
+
+        allow_clicks = false;
+
+        if (answer4.id === 'correct') {
+            correct();
+        }
+        else {
+            incorrect();
+        };
+
+    };   
 })
 
 
