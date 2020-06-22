@@ -16,8 +16,8 @@ var submit_initials = document.getElementById("submit-initials")
 var score_display = document.getElementById("score")
 var start = document.getElementById("start-quiz")
 var view_highscores = document.querySelectorAll("#view-highscores")
-var initial_time = document.querySelectorAll("#time-initial")
-var timer = document.querySelectorAll('#time-remaining')
+var initial_time = document.getElementById("time-initial")
+var timer = document.getElementById('time-remaining')
 var restart = document.getElementById("restart")
 var question = document.getElementById('question')
 var answer1 = document.querySelector('.one')
@@ -68,6 +68,7 @@ function next_question() {
     interval = setInterval( function() {
         time_remaining--;
         timer.textContent = time_remaining;
+        console.log(time_remaining)
     }, 1000)
 };
 
@@ -78,6 +79,7 @@ function correct() {
         feedback.textContent = '';
         time_remaining--;
         timer.textContent = time_remaining;
+        console.log(time_remaining);
         next_question();
     }, 1000
     )
@@ -92,6 +94,7 @@ function incorrect() {
         feedback.textContent = '';
         time_remaining--;
         timer.textContent = time_remaining;
+        console.log(time_remaining)
         next_question();
     }, 1000
     )
