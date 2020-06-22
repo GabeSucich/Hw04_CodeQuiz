@@ -7,6 +7,7 @@ var question_array = [{question: '?', 'correct': 'I am male', 'false1' : 'I am f
                     {question: '?', 'correct': 1, 'false1' : 2, 'false2' : 2, 'false3': 2}
                     ]
 var score = 100;
+var wrong_answers = 0;
 var time_remaining = 75;
 var clear_scores = document.getElementById("clear-highscores")
 var scores_list = document.getElementById("highscore-list")
@@ -15,14 +16,19 @@ var submit_initials = document.getElementById("submit-initials")
 var score_display = document.getElementById("score")
 var start = document.getElementById("start-quiz")
 var view_highscores = document.querySelectorAll("#view-highscores")
+var initial_time = document.querySelectorAll("#time-initial")
+var timer = document.querySelectorAll('#time-remaining')
 var restart = document.getElementById("restart")
 var question = document.getElementById('question')
 var answer1 = document.querySelector('.one')
 var answer2 = document.querySelector('.two')
 var answer3 = document.querySelector('.three')
 var answer4 = document.querySelector('.four')
+var feedback = document.getElementById('feedback')
+var interval;
 
 screen_switcher(".begin")
+initial_time.textContent = '75';
 
 
 function screen_switcher(target) {
@@ -42,6 +48,86 @@ function screen_switcher(target) {
     };
 
 };
+
+function next_question() {
+    if (question_array.length === 0) {
+        finish_game();
+    }
+
+    else {
+        question_setup(question_array[0]);
+        question_array.shift();
+    };
+    
+    console.log(question_array);
+
+    interval = setInterval( function() {
+        time_remaining--;
+        timer.textContent = time_remaining;
+    }, 1000)
+};
+
+function correct() {
+    clearInterval(interval);
+    feedback.textContent = "Correct!"
+    setTimeout(function () {
+        feedback.textContent = '';
+        time_remaining--;
+        timer.textContent = time_remaining;
+        next_question();
+    }, 1000
+    )
+};
+
+function incorrect() {
+    clearInterval(interval);
+    feedback.textContent = "Wrong!"
+    wrong_answers++;
+    time_remaining -= 10;
+    setTimeout(function () {
+        feedback.textContent = '';
+        time_remaining--;
+        timer.textContent = time_remaining;
+        next_question();
+    }, 1000
+    )
+}
+
+answer1.addEventListener("click", function() {
+    if (answer1.id === 'correct') {
+        correct();
+    }
+    else {
+        incorrect();
+    }
+})
+answer2.addEventListener("click", function() {
+    if (answer2.id === "correct") {
+        correct();
+    }
+    else {
+        incorrect();
+    }
+})
+answer3.addEventListener("click", function() {
+    if (answer3.id === "correct") {
+        correct();
+    }
+    else {
+        incorrect();
+    }
+})
+answer4.addEventListener("click", function() {
+    if (answer4.id === "correct") {
+        correct();
+    }
+    else {
+        incorrect();
+    }
+})
+
+
+
 
 // This function takes in an obj of question and answers. Displays the questions on the
 function question_setup(info) {
@@ -69,17 +155,18 @@ function question_setup(info) {
         };
         randomized.shift()
     };  
+    
 };
-
 
 function take_quiz() {
     screen_switcher(".in-game");
-    console.log(question_array[0])
-    question_setup(question_array[0]);
+    next_question();
 };
 
 function finish_game() {
+    clearInterval(interval);
     screen_switcher(".enter-initials");
+    score = score + time_remaining - 14*wrong_answers
     score_display.textContent = score
 }
 

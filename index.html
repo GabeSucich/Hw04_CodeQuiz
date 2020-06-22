@@ -11,7 +11,7 @@
 <body>
     <!-- elements with the 'in-game' class will only be displayed during the game. -->
     <main class="begin main">
-        <time id="timer">Time: <span id="time-remaining"></span></time>
+        <aside class="timer">Time: <span id="time-initial"></span></aside>
         <aside id="view-highscores">View Highscores</aside>
         <h1>Code Quiz Challenge</h1>
         <h3>Answer the questions within the time limit. Incorrect answers will results in a ten-second deduction from
@@ -21,7 +21,7 @@
     </main>
 
     <main class="in-game main" id="question-box">
-        <time id="timer">Time: <span id="time-remaining"></span></time>
+        <aside class="timer">Time: <span id="time-remaining"></span></aside>
         <aside id="view-highscores">View Highscores</aside>
         <h2 id="question">Here is an example question. It will take up space for demo purposes,
             so you can see what the layout of the page is.
@@ -30,6 +30,8 @@
         <button class="answer two"></button>
         <button class="answer three"></button>
         <button class="answer four"></button>
+        <hr>
+        <footer id="feedback"></footer>
     </main>
 
     <main class="enter-initials main">
