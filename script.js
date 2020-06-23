@@ -98,7 +98,7 @@ function next_question() {
         time_remaining--;
         timer.textContent = time_remaining;
         if (time_remaining === 0) {
-            timer.textContent = 0;
+            finish_game();
             clearInterval(interval);
         }
     }, 1000)
@@ -111,7 +111,7 @@ function correct() {
     setTimeout(function () {
         feedback.textContent = '';
         if (time_remaining === 0) {
-            timer.textContent = 0;
+            finish_game();
         }
         else {
         time_remaining--;
@@ -129,7 +129,7 @@ function incorrect() {
     setTimeout(function () {
         feedback.textContent = '';
         if (time_remaining === 0) {
-            timer.textContent = 0;
+            finish_game();
         }
         else {
         time_remaining--;
