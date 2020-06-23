@@ -37,7 +37,7 @@ var question_array = [{question: "The variable 'total' is initially set to 0. Wh
 var question_num = 0;
 var score = 100;
 var wrong_answers = 0;
-var time_remaining = 75;
+var time_remaining = 100;
 var clear_scores = document.getElementById("clear-highscores")
 var scores_list = document.getElementById("highscore-list")
 var initial_input = document.getElementById("initial-input")
@@ -58,8 +58,8 @@ var interval;
 var allow_clicks = true;
 
 screen_switcher(".begin")
-initial_time.textContent = '75';
-timer.textContent = '75'
+initial_time.textContent = '100';
+timer.textContent = '100'
 
 
 function screen_switcher(target) {
@@ -227,7 +227,7 @@ function finish_game() {
     clearInterval(interval);
     screen_switcher(".enter-initials");
     if (time_remaining >= 0) {
-        score = score + time_remaining - 14*wrong_answers
+        score = score + Math.floor(time_remaining/5) - 14*wrong_answers
     }
     else {
         score = "0 (Ran out of time)"
@@ -262,6 +262,7 @@ function write_score() {
 
 // Resest the game.
 restart.addEventListener("click", function () { 
+    question_randomizer();
     score = 100;
     time_remaining = 75;
     question_num = 0;
@@ -336,6 +337,27 @@ function assigner(num) {
     };
 }
 
+function question_randomizer() {
+    var ordered = question_array;
+    var unordered = [];
+    function helper() {
+
+        if (ordered.length === 1) {
+            unordered.push(ordered[0])
+        }
+
+        else {
+            var random_el = random_element(ordered);
+            var index = ordered.indexOf(random_el);
+            unordered.push(random_el)
+            ordered = ordered.slice(0, index).concat(ordered.slice(index+1))
+            helper()
+        };
+    };
+    
+    helper();
+    question_array = unordered;
+}
 
 
 
