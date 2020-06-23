@@ -57,32 +57,26 @@ var feedback = document.getElementById('feedback')
 var interval;
 var allow_clicks = true;
 
+
 // The screen is set to the beginning display when the page is opened. The initial time is set to 100
 screen_switcher(".begin");
 timer.textContent = '100'
 
 
-function screen_switcher(target) {
-    // Takes in a class name in the form of ".class". All elements on the page with 
-    // this class have display "initial". All others have display "none".
-    var mains = document.querySelectorAll('main');
-    var displayed = document.querySelector(target)
-    
-    for (const element of mains) {
-        if (element === displayed) {
-            element.style.removeProperty('display');
-        }
 
-        else {
-            element.style.setProperty('display', 'none');
-        };
-    };
 
+
+// QUIZ-FLOW FUNCTIONS
+
+// Function that beings the quiz
+function take_quiz() {
+    screen_switcher(".in-game");
+    next_question();
 };
 
+// Function that triggers the next question to be asked. 
+// Called after the player has answered a question and the score has been displayed.
 function next_question() {
-    // Called after player has answered a question and score has been displayed.
-    // Produces next question on screen
     allow_clicks = true;
 
     if (question_num === (question_array.length - 1)) {
@@ -104,106 +98,7 @@ function next_question() {
     }, 1000)
 };
 
-function correct() {
-    correct_answers++;
-    clearInterval(interval);
-    feedback.textContent = "Correct!"
-    setTimeout(function () {
-        feedback.textContent = '';
-        if (time_remaining === 0) {
-            finish_game();
-        }
-        else {
-        time_remaining--;
-        timer.textContent = time_remaining;
-        };
-        next_question();
-    }, 1000
-    )
-};
-
-function incorrect() {
-    clearInterval(interval);
-    feedback.textContent = "Wrong!";
-    time_remaining -= 10;
-    setTimeout(function () {
-        feedback.textContent = '';
-        if (time_remaining === 0) {
-            finish_game();
-        }
-        else {
-        time_remaining--;
-        timer.textContent = time_remaining;
-        };
-        
-        next_question();
-    }, 1000
-    )
-}
-
-answer1.addEventListener("click", function() {
-    if (allow_clicks) {
-
-        allow_clicks = false;
-
-        if (answer1.id === 'correct') {
-            correct();
-        }
-        else {
-            incorrect();
-        };
-
-    };   
-
-
-})
-answer2.addEventListener("click", function() {
-    if (allow_clicks) {
-
-        allow_clicks = false;
-
-        if (answer2.id === 'correct') {
-            correct();
-        }
-        else {
-            incorrect();
-        };
-
-    };   
-})
-answer3.addEventListener("click", function() {
-    if (allow_clicks) {
-
-        allow_clicks = false;
-
-        if (answer3.id === 'correct') {
-            correct();
-        }
-        else {
-            incorrect();
-        };
-
-    };   
-})
-answer4.addEventListener("click", function() {
-    if (allow_clicks) {
-
-        allow_clicks = false;
-
-        if (answer4.id === 'correct') {
-            correct();
-        }
-        else {
-            incorrect();
-        };
-
-    };   
-})
-
-
-
-
-// This function takes in an obj of question and answers. Displays the questions on the
+// Function that is responsible for displaying the next question in the quiz.
 function question_setup(info) {
     question.textContent = info.question;
     var randomized = random_ordering();
@@ -232,11 +127,46 @@ function question_setup(info) {
     
 };
 
-function take_quiz() {
-    screen_switcher(".in-game");
-    next_question();
+// Function called when a question is answered correctly.
+function correct() {
+    correct_answers++;
+    clearInterval(interval);
+    feedback.textContent = "Correct!"
+    setTimeout(function () {
+        feedback.textContent = '';
+        if (time_remaining === 0) {
+            finish_game();
+        }
+        else {
+        time_remaining--;
+        timer.textContent = time_remaining;
+        };
+        next_question();
+    }, 1000
+    )
 };
 
+// Function called when a question is answered incorrectly.
+function incorrect() {
+    clearInterval(interval);
+    feedback.textContent = "Wrong!";
+    time_remaining -= 10;
+    setTimeout(function () {
+        feedback.textContent = '';
+        if (time_remaining === 0) {
+            finish_game();
+        }
+        else {
+        time_remaining--;
+        timer.textContent = time_remaining;
+        };
+        
+        next_question();
+    }, 1000
+    )
+}
+
+// Function that is called when the game is over (the player has answered all questions or time has reached zero).
 function finish_game() {
     clearInterval(interval);
     screen_switcher(".enter-initials");
@@ -249,66 +179,44 @@ function finish_game() {
     score_display.textContent = score
 }
 
+// Function responsible for changing the display between the beginning screen, the game screen, the initials-entry screen, and the highscores screen.
+function screen_switcher(target) {
 
-// BEGINNING SCREEN
+    var mains = document.querySelectorAll('main');
+    var displayed = document.querySelector(target)
+    
+    for (const element of mains) {
+        if (element === displayed) {
+            element.style.removeProperty('display');
+        }
 
-start.addEventListener("click", function() {
-    take_quiz();
-}
-)
+        else {
+            element.style.setProperty('display', 'none');
+        };
+    };
 
-// VIEW HIGHSCORES BUTTON
-
-for (const element of view_highscores) {
-    element.addEventListener("click", function() {
-        screen_switcher(".highscores");
-        clearInterval(interval);
-    })
 };
 
-
-// SCORE AND HIGHSCORES
-
+// Function that displays the final score on the page after the game has ended
 function write_score() {
     score_display.textContent = score
     score_display.style.fontWeight = 'bold'
 }
 
-// Resest the game.
-restart.addEventListener("click", function () { 
-    question_randomizer();
-    score = 100;
-    time_remaining = 75;
-    question_num = 0;
-    screen_switcher(".begin")
-})
 
-// Clears the scores from the highscores list
-clear_scores.addEventListener("click", function() {
-    scores_list.innerHTML = ''
-})
 
-// Will add your high score to the list
-submit_initials.addEventListener("click", function(event) {
-    event.preventDefault()
-    var new_score = document.createElement('p');
-    new_score.textContent = initial_input.value + " - " + score;
-    new_score.setAttribute('class', 'stored-score')
-    scores_list.appendChild(new_score)
-    screen_switcher(".highscores") //Jumps to the high scores page
-}
-);
 
-// MISCELLANEOUS HELPER FUNCTIONS
 
-// A function which returns a random element from an array
+// MISCELLANEOUS COMPUTATIONAL FUNCTIONS
+
+// A function which chooses a random element from the argument array.
 function random_element(arr) {
     var length = arr.length;
     var random_index = Math.floor(length*Math.random());
     return arr[random_index];
 };
 
-// A function which randomizes the array [1, 2, 3, 4]
+// A function which randomizes the array [1, 2, 3, 4]. This is used to make randomize the order of the answer choices in each question.
 function random_ordering() {
     var ordered = ['one', 'two', 'three', 'four'];
     var unordered = [];
@@ -331,7 +239,7 @@ function random_ordering() {
     return unordered;
 };
 
-
+// A function which takes in the id of a button and returns to which button the program should point.
 function assigner(num) {
 
     if (num == 'one') {
@@ -351,6 +259,7 @@ function assigner(num) {
     };
 }
 
+// This function randomizes the order of the objects in the question_array. It will be called each time the quiz is restarted.
 function question_randomizer() {
     var ordered = question_array;
     var unordered = [];
@@ -372,6 +281,105 @@ function question_randomizer() {
     helper();
     question_array = unordered;
 }
+
+
+
+
+// EVENT LISTENERS
+
+// Event listener handling the start button on the beginning screen.
+start.addEventListener("click", function() {
+    take_quiz();
+})
+
+// The following four event listeners are for each of the four answer choice buttons.
+answer1.addEventListener("click", function() {
+    if (allow_clicks) {
+
+        allow_clicks = false;
+
+        if (answer1.id === 'correct') {
+            correct();
+        }
+        else {
+            incorrect();
+        };
+    };   
+})
+
+answer2.addEventListener("click", function() {
+    if (allow_clicks) {
+
+        allow_clicks = false;
+
+        if (answer2.id === 'correct') {
+            correct();
+        }
+        else {
+            incorrect();
+        };
+    };   
+})
+answer3.addEventListener("click", function() {
+    if (allow_clicks) {
+
+        allow_clicks = false;
+
+        if (answer3.id === 'correct') {
+            correct();
+        }
+        else {
+            incorrect();
+        };
+
+    };   
+})
+answer4.addEventListener("click", function() {
+    if (allow_clicks) {
+
+        allow_clicks = false;
+
+        if (answer4.id === 'correct') {
+            correct();
+        }
+        else {
+            incorrect();
+        };
+    };   
+})
+
+// Event listener handling the 'view highscores' button in the top left corner.
+for (const element of view_highscores) {
+    element.addEventListener("click", function() {
+        screen_switcher(".highscores");
+        clearInterval(interval);
+    })
+};
+
+// Event listener handling the submission of initials and associated score to the highscores page.
+submit_initials.addEventListener("click", function(event) {
+    event.preventDefault()
+    var new_score = document.createElement('p');
+    new_score.textContent = initial_input.value + " - " + score;
+    new_score.setAttribute('class', 'stored-score')
+    scores_list.appendChild(new_score)
+    screen_switcher(".highscores") //Jumps to the high scores page
+}
+);
+
+// Event listener handling the button to start over on the highscores page.
+restart.addEventListener("click", function () { 
+    question_randomizer();
+    score = 100;
+    time_remaining = 75;
+    question_num = 0;
+    screen_switcher(".begin")
+})
+
+// Event listener handling the button to clear the highscores list on the highscores page.
+clear_scores.addEventListener("click", function() {
+    scores_list.innerHTML = ''
+})
 
 
 
