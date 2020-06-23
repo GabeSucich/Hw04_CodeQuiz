@@ -4,6 +4,21 @@ body {
     text-align: center;
 }
 
+/* Removing the shadows from clicked buttons*/
+button {
+    outline:none;
+}
+
+/* Formatting for the main section of each display that might appear. */
+.main {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20%;
+    height:50%;
+    width:40%;
+}
+ 
+/* Formatting for the top-right box which contains the timer. */
 .timer {
     position:fixed;
     text-align: right;
@@ -16,8 +31,7 @@ body {
     background-color: transparent;
 }
 
-
-
+/* Formatting for the top-left box which contains the 'view highscore' button. */
 #view-highscores {
     position:fixed;
     top: 10px;
@@ -28,18 +42,24 @@ body {
     padding-left: 1%;
 }
 
-.main {
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 20%;
-    height:50%;
-    width:40%;
+/* Formatting for the 'start quiz' button on the opening screen. */
+#start-quiz {
+    margin-top: 3px;
+    border-radius: 10px;
+    background-color: lightgreen;
+    opacity: 70%;
 }
 
+#question {
+    margin-bottom: 20px;
+}
+
+/* Formatting the box where questions and answer choices to appear larger and less cramped. */
 #question-box {
     width:60%;
 }
 
+/* Formatting the answer choice buttons */
 .answer {
     display: block;
     font-size: large;
@@ -52,35 +72,7 @@ body {
     text-align: left;
 }
 
-#start-quiz {
-    margin-top: 3px;
-    border-radius: 10px;
-    background-color: lightgreen;
-    opacity: 70%;
-}
-
-#highscore-list {
-    background-color: white;
-    opacity: 70%;
-    margin-bottom: 40px;
-}
-
-.highscore-btn {
-    margin-top: 3px;
-    border-radius: 10px;
-    background-color: lightgreen;
-    opacity: 70%;
-}
-
-.stored-score {
-    margin: 0;
-    padding: 1;
-}
-
-#question {
-    margin-bottom: 20px;
-}
-
+/* Formatting the "correct" or "wrong" message at the bottom of screen during the quiz. */
 #feedback {
     text-align: left;
     font-size: large;
@@ -88,6 +80,19 @@ body {
     font-family: cursive;
 }
 
-button {
-    outline:none;
+ /* Formatting the list of highscores at the end of the quiz  */
+#highscore-list {
+    background-color: white;
+    opacity: 70%;
+    margin-bottom: 40px;
+}
+
+
+
+/* Formatting the buttons on the highscores page. */
+.highscore-btn {
+    margin-top: 3px;
+    border-radius: 10px;
+    background-color: lightgreen;
+    opacity: 70%;
 }
