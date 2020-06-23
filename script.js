@@ -6,6 +6,7 @@ var question_array = [{question: '?', 'correct': 'I am male', 'false1' : 'I am f
                     {question: '?', 'correct': 1, 'false1' : 2, 'false2' : 2, 'false3': 2},
                     {question: '?', 'correct': 1, 'false1' : 2, 'false2' : 2, 'false3': 2}
                     ]
+var question_num = 0;
 var score = 100;
 var wrong_answers = 0;
 var time_remaining = 75;
@@ -30,6 +31,7 @@ var allow_clicks = true;
 
 screen_switcher(".begin")
 initial_time.textContent = '75';
+timer.textContent = '75'
 
 
 function screen_switcher(target) {
@@ -54,21 +56,18 @@ function next_question() {
 
     allow_clicks = true;
 
-    if (question_array.length === 0) {
+    if (question_num === (question_array.length - 1)) {
         finish_game();
     }
 
     else {
-        question_setup(question_array[0]);
-        question_array.shift();
+        question_setup(question_array[question_num]);
+        question_num++;
     };
-    
-    console.log(question_array);
 
     interval = setInterval( function() {
         time_remaining--;
         timer.textContent = time_remaining;
-        console.log(time_remaining)
     }, 1000)
 };
 
@@ -199,7 +198,12 @@ function take_quiz() {
 function finish_game() {
     clearInterval(interval);
     screen_switcher(".enter-initials");
-    score = score + time_remaining - 14*wrong_answers
+    if (time_remaining >= 0) {
+        score = score + time_remaining - 14*wrong_answers
+    }
+    else {
+        score = "0 (Ran out of time)"
+    };
     score_display.textContent = score
 }
 
@@ -216,6 +220,7 @@ start.addEventListener("click", function() {
 for (const element of view_highscores) {
     element.addEventListener("click", function() {
         screen_switcher(".highscores");
+        clearInterval(interval);
     })
 };
 
@@ -231,6 +236,7 @@ function write_score() {
 restart.addEventListener("click", function () { 
     score = 100;
     time_remaining = 75;
+    question_num = 0;
     screen_switcher(".begin")
 })
 

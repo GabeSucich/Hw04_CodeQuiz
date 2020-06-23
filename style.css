@@ -83,3 +83,7 @@ body {
     font-weight: bold;
     font-family: cursive;
 }
+
+button {
+    outline:none;
+}
