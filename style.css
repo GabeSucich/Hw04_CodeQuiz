@@ -76,7 +76,7 @@ button {
 /* Formatting the "correct" or "wrong" message at the bottom of screen during the quiz. */
 #feedback {
     text-align: left;
-    font-size: large;
+    font-size: xx-large;
     font-weight: bold;
     font-family: cursive;
 }
