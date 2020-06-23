@@ -58,10 +58,10 @@ var interval;
 var allow_clicks = true;
 
 
-// The screen is set to the beginning display when the page is opened. The initial time is set to 100
+// The screen is set to the beginning display when the page is opened. The initial time is set to 100, and the questions are randomized.
 screen_switcher(".begin");
 timer.textContent = '100'
-
+question_randomizer()
 
 
 
