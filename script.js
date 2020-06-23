@@ -35,8 +35,8 @@ var question_array = [{question: "The variable 'total' is initially set to 0. Wh
                     'false3': "We do not need to call any special function to prevent this refresh."}
                     ]
 var question_num = 0;
-var score = 100;
-var wrong_answers = 0;
+var score;
+var correct_answers = 0;
 var time_remaining = 100;
 var clear_scores = document.getElementById("clear-highscores")
 var scores_list = document.getElementById("highscore-list")
@@ -57,8 +57,8 @@ var feedback = document.getElementById('feedback')
 var interval;
 var allow_clicks = true;
 
-screen_switcher(".begin")
-initial_time.textContent = '100';
+// The screen is set to the beginning display when the page is opened. The initial time is set to 100
+screen_switcher(".begin");
 timer.textContent = '100'
 
 
@@ -81,7 +81,8 @@ function screen_switcher(target) {
 };
 
 function next_question() {
-
+    // Called after player has answered a question and score has been displayed.
+    // Produces next question on screen
     allow_clicks = true;
 
     if (question_num === (question_array.length - 1)) {
@@ -96,17 +97,26 @@ function next_question() {
     interval = setInterval( function() {
         time_remaining--;
         timer.textContent = time_remaining;
+        if (time_remaining === 0) {
+            timer.textContent = 0;
+            clearInterval(interval);
+        }
     }, 1000)
 };
 
 function correct() {
+    correct_answers++;
     clearInterval(interval);
     feedback.textContent = "Correct!"
     setTimeout(function () {
         feedback.textContent = '';
+        if (time_remaining === 0) {
+            timer.textContent = 0;
+        }
+        else {
         time_remaining--;
         timer.textContent = time_remaining;
-        console.log(time_remaining);
+        };
         next_question();
     }, 1000
     )
@@ -114,14 +124,18 @@ function correct() {
 
 function incorrect() {
     clearInterval(interval);
-    feedback.textContent = "Wrong!"
-    wrong_answers++;
+    feedback.textContent = "Wrong!";
     time_remaining -= 10;
     setTimeout(function () {
         feedback.textContent = '';
+        if (time_remaining === 0) {
+            timer.textContent = 0;
+        }
+        else {
         time_remaining--;
         timer.textContent = time_remaining;
-        console.log(time_remaining)
+        };
+        
         next_question();
     }, 1000
     )
@@ -227,7 +241,7 @@ function finish_game() {
     clearInterval(interval);
     screen_switcher(".enter-initials");
     if (time_remaining >= 0) {
-        score = score + Math.floor(time_remaining/5) - 14*wrong_answers
+        score = Math.floor(time_remaining/5) + 14*correct_answers
     }
     else {
         score = "0 (Ran out of time)"
