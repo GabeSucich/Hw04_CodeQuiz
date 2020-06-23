@@ -17,6 +17,7 @@ body {
 }
 
 
+
 #view-highscores {
     position:fixed;
     top: 10px;
@@ -35,6 +36,9 @@ body {
     width:40%;
 }
 
+#question-box {
+    width:60%;
+}
 
 .answer {
     display: block;
