@@ -79,7 +79,7 @@ function take_quiz() {
 function next_question() {
     allow_clicks = true;
 
-    if (question_num === (question_array.length - 1)) {
+    if (question_num === (question_array.length)) {
         finish_game();
     }
 
@@ -138,12 +138,11 @@ function correct() {
             finish_game();
         }
         else {
-        time_remaining--;
-        timer.textContent = time_remaining;
+            time_remaining--;
+            timer.textContent = time_remaining;
         };
-        next_question();
-    }, 1000
-    )
+    }, 1000)
+    next_question();
 };
 
 // Function called when a question is answered incorrectly.
@@ -160,10 +159,8 @@ function incorrect() {
         time_remaining--;
         timer.textContent = time_remaining;
         };
-        
-        next_question();
-    }, 1000
-    )
+    }, 1000)
+    next_question();
 }
 
 // Function that is called when the game is over (the player has answered all questions or time has reached zero).
