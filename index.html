@@ -9,54 +9,56 @@
 </head>
 
 <body>
-    <main class="begin main">
-        <aside class="timer">Time: <span id="time-initial">100</span></aside>
-        <aside id="view-highscores">View Highscores</aside>
-        <h1>Code Quiz Challenge</h1>
-        <h3>Answer the questions within the time limit. Incorrect answers will results in a ten-second deduction from
-            your time, and a deduction from your score.
-        </h3>
-        <button id="start-quiz">Start Quiz</button>
-    </main>
+    <div class="container">
+        <main class="begin main">
+            <aside class="timer">Time: <span id="time-initial">100</span></aside>
+            <aside id="view-highscores">View Highscores</aside>
+            <h1>Code Quiz Challenge</h1>
+            <h3>Answer the questions within the time limit. Incorrect answers will results in a ten-second deduction
+                from
+                your time, and a deduction from your score.
+            </h3>
+            <button id="start-quiz">Start Quiz</button>
+        </main>
 
-    <main class="in-game main" id="question-box">
-        <aside class="timer">Time: <span id="time-remaining"></span></aside>
-        <aside id="view-highscores">View Highscores</aside>
-        <h2 id="question">Here is an example question. It will take up space for demo purposes,
-            so you can see what the layout of the page is.
-        </h2>
-        <button class="answer one"></button>
-        <button class="answer two"></button>
-        <button class="answer three"></button>
-        <button class="answer four"></button>
-        <hr>
-        <footer id="feedback"></footer>
-    </main>
+        <main class="in-game main" id="question-box">
+            <aside class="timer">Time: <span id="time-remaining"></span></aside>
+            <aside id="view-highscores">View Highscores</aside>
+            <h2 id="question">Here is an example question. It will take up space for demo purposes,
+                so you can see what the layout of the page is.
+            </h2>
+            <button class="answer one"></button>
+            <button class="answer two"></button>
+            <button class="answer three"></button>
+            <button class="answer four"></button>
+            <hr>
+            <footer id="feedback"></footer>
+        </main>
 
-    <main class="enter-initials main">
-        <h2>All done!</h2>
-        <h4>Your final score is <span id="score"></span></h4>
-        <form id="initials-input">
-            <label>Enter your initials here:</label>
-            <input type="text" id="initial-input"/>
-            <input type="submit" id="submit-initials" />
-        </form>
+        <main class="enter-initials main">
+            <h2>All done!</h2>
+            <h4>Your final score is <span id="score"></span></h4>
+            <form id="initials-input">
+                <label>Enter your initials here:</label>
+                <input type="text" id="initial-input" />
+                <input type="submit" id="submit-initials" />
+            </form>
 
-    </main>
+        </main>
 
-    <main class="highscores main">
-        <header>
-            <h1>Highscores</h1>
-        </header>
+        <main class="highscores main">
+            <header>
+                <h1>Highscores</h1>
+            </header>
 
-        <div id="highscore-list">
-        </div>
+            <div id="highscore-list">
+            </div>
 
-        <button class="highscore-btn" id="restart">Take quiz again</button>
-        <button class="highscore-btn" id="clear-highscores">Clear highscores</button>
+            <button class="highscore-btn" id="restart">Take quiz again</button>
+            <button class="highscore-btn" id="clear-highscores">Clear highscores</button>
 
-    </main>
-
+        </main>
+    </div>
 
     <script src="script.js"></script>
 </body>

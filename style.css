@@ -9,6 +9,10 @@ button {
     outline:none;
 }
 
+.container {
+    width: 100vw;
+}
+
 /* Formatting for the main section of each display that might appear. */
 .main {
     margin-right: auto;
@@ -20,7 +24,7 @@ button {
  
 /* Formatting for the top-right box which contains the timer. */
 .timer {
-    position:fixed;
+    position:absolute;
     text-align: right;
     top: 10px;
     margin-right: 10px;
@@ -33,11 +37,11 @@ button {
 
 /* Formatting for the top-left box which contains the 'view highscore' button. */
 #view-highscores {
-    position:fixed;
+    position:absolute;
     top: 10px;
     left: 0;
     height: 3%;
-    width:11%;
+    width:30%;
     background-color: transparent;
     padding-left: 8px;
     text-align: left;
