@@ -367,9 +367,10 @@ submit_initials.addEventListener("click", function(event) {
 // Event listener handling the button to start over on the highscores page.
 restart.addEventListener("click", function () { 
     question_randomizer();
-    score = 100;
+    score = 0;
     time_remaining = 75;
     question_num = 0;
+    correct_answers=0;
     screen_switcher(".begin")
 })
 
