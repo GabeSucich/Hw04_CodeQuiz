@@ -74,6 +74,7 @@ function take_quiz() {
     next_question();
 };
 
+
 // Function that triggers the next question to be asked. 
 // Called after the player has answered a question and the score has been displayed.
 function next_question() {
@@ -91,7 +92,7 @@ function next_question() {
     interval = setInterval( function() {
         time_remaining--;
         timer.textContent = time_remaining;
-        if (time_remaining === 0) {
+        if (time_remaining <= 0) {
             finish_game();
             clearInterval(interval);
         }
@@ -134,7 +135,7 @@ function correct() {
     feedback.textContent = "Correct!"
     setTimeout(function () {
         feedback.textContent = '';
-        if (time_remaining === 0) {
+        if (time_remaining <= 0) {
             finish_game();
         }
         else {
@@ -142,6 +143,7 @@ function correct() {
             timer.textContent = time_remaining;
         };
     }, 1000)
+
     next_question();
 };
 
@@ -152,7 +154,7 @@ function incorrect() {
     time_remaining -= 10;
     setTimeout(function () {
         feedback.textContent = '';
-        if (time_remaining === 0) {
+        if (time_remaining <= 0) {
             finish_game();
         }
         else {
