@@ -168,12 +168,12 @@ function finish_game() {
     clearInterval(interval);
     screen_switcher(".enter-initials");
     if (time_remaining >= 0) {
-        score = Math.floor(time_remaining/5) + 14*correct_answers
+        score = parseFloat(Math.floor(time_remaining/10)) + parseFloat(14*correct_answers)
     }
     else {
         score = "0 (Ran out of time)"
     };
-    score_display.textContent = score
+    score_display.textContent = parseInt(score)
 }
 
 // Function responsible for changing the display between the beginning screen, the game screen, the initials-entry screen, and the highscores screen.
